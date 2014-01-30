@@ -1,19 +1,27 @@
 <!doctype html>
-<title>Borða mat</title>
+<head>
+  <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css">
+  <title>Borða mat</title>
+</head>
 
-<div class=page>
-  <h1>Borða mat</h1>
-  <div class=metanav>
-    {% if not session.logged_in %}
-      <a href="{{ url_for('login') }}">log in</a>
-    {% else %}
-      <a href="{{ url_for('logout') }}">log out</a>
-    {% endif %}
+<body>
+  <div class=page>
+    <h1>Borða mat</h1>
+    <div class=metanav>
+      {% if not session.logged_in %}
+        <a href="{{ url_for('login') }}">log in</a>
+      {% else %}
+        <a href="{{ url_for('logout') }}">log out</a>
+      {% endif %}
+    </div>
+
+    {% for message in get_flashed_messages() %}
+      <div class=flash>{{ message }}</div>
+    {% endfor %}
+
+    {% block body %}{% endblock %}
   </div>
 
-  {% for message in get_flashed_messages() %}
-    <div class=flash>{{ message }}</div>
-  {% endfor %}
-
-  {% block body %}{% endblock %}
-</div>
+  <script src="../static/js/jquery-1.11.0.js"></script>
+  <script src="../static/js/bootstrap.js"></script>
+</body>

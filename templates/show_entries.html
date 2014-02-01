@@ -2,22 +2,30 @@
 
 {% block body %}
   {% if session.logged_in %}
-    <form action="{{ url_for('add_entry') }}" method="post">
-      <dl>
-        <dt>Title:
-        <dd><input type="text" size="30" name="title">
-        <dt>Text:
-        <dd><textarea name="text" rows="5" cols="40"></textarea>
-        <dd><input type="submit" value="Share">
-      </dl>
+    <form action="{{ url_for('add_entry') }}" method="post" class="form-horizontal" role="form">
+      <div class="form-group">
+        <label for="title" class="col-sm-2 control-label">Titill</label>
+        <div class="col-sm-10">
+          <input type="text" id="title" name="title" class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="text" class="col-sm-2 control-label">Texti</label>
+        <div class="col-sm-10">
+          <textarea id="text" name="text" class="form-control" rows="10"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default">Bæta við</button>
+        </div>
+      </div>
     </form>
   {% endif %}
 
-  <ul>
   {% for entry in entries %}
-    <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
+    <h2>{{ entry.title }}</h2>{{ entry.text|safe }}
   {% else %}
-    <li><em>Unbelievable.  No entries here so far</em>
+    <p class="text-muted">Engin matarrýni hér enn sem komið er.</p>
   {% endfor %}
-  </ul>
 {% endblock %}

@@ -1,24 +1,34 @@
 <!doctype html>
 <head>
   <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/site.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Borða mat</title>
 </head>
 
 <body>
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Borða mat</h1>
+      <p class="lead">Ég er heima. Ég er að heiman.</p>
+    </div>
+  </div>
   <div class="container">
     <div class="row">
-      <div class="col-sm-8">
-        <h1>Borða mat</h1>
+      <div class="col-md-2">
+        <img src="/static/img/agust.jpg" class="img-circle">
+        <h3>Ágúst Stefánsson</h3>
+        <p>Matgæðingur</p>
+        <img src="/static/img/oddur.jpg" class="img-circle">
+        <h3>Oddur Aðalgeirsson</h3>
+        <p>Lífskúnstner</p>
+      </div>
+      <div class="col-md-6 col-md-offset-1">
         {% if not session.logged_in %}
-          <a href="{{ url_for('login') }}">log in</a>
+          <p><a href="{{ url_for('login') }}">Innskráning</a></p>
         {% else %}
-          <a href="{{ url_for('logout') }}">log out</a>
+          <p><a href="{{ url_for('logout') }}">Útskráning</a></p>
         {% endif %}
-
-        {% for message in get_flashed_messages() %}
-          <div>{{ message }}</div>
-        {% endfor %}
 
         {% block body %}{% endblock %}
       </div>
